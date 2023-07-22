@@ -10,10 +10,8 @@ services:
     shm_size: '1gb'
     command: --model-id daryl149/llama-2-7b-chat-hf
     environment:
-      # - model-id=daryl149/llama-2-7b-chat-hf
-      # - model-id=georgesung/llama2_7b_chat_uncensored
       # - num_shard=1
-      # - json_output=True
+      - json_output=True
     deploy:
       resources:
         reservations:
