@@ -14,6 +14,23 @@ There are three main components to this repository:
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 - NVIDIA GPUs 
 
+## Usage
+
+In order to run the chat model locally, you only need to run the following command. Note that the first time you run this command, it will download the docker images for the services. This may take a while depending on your internet connection.
+
+```
+cd local-llm 
+
+docker compose up huggingface_inference # takes a while to download the model
+docker compose up chat_ui
+docker compose up mongo_chatui
+
+
+# Later runs can be done with the following command! 
+docker compose up
+```
+
+
 ## Tested Environment
 - NVIDIA RTX 3090, Driver 535.86.05, CUDA version 12.2
 - 2 x NVIDIA RTX 2080 Ti, Driver 470.182.03 , CUDA version 11.4
@@ -23,3 +40,6 @@ There are three main components to this repository:
 - daryl149/llama-2-7b-chat-hf (unofficial, default)
 - meta-llama/Llama-2-7b-chat-hf (needs approval)
 - georgesung/llama2_7b_chat_uncensored (supposedly it is less politically correct, not tested)
+
+
+
