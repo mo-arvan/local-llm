@@ -22,8 +22,8 @@ In order to run the chat model locally, you only need to run the following comma
 cd local-llm 
 
 docker compose up huggingface_inference # takes a while to download the model
-docker compose up chat_ui
 docker compose up mongo_chatui
+docker compose up chat_ui
 
 
 # Later runs can be done with the following command! 
