@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  huggingface_inference:
+    image: ghcr.io/huggingface/text-generation-inference:0.9
+    volumes:
+      - ./models/:/data
+    ports:
+      - "3000:80"
+    shm_size: '1gb'
+    command: --model-id daryl149/llama-2-7b-chat-hf
+    environment:
+      # - model-id=daryl149/llama-2-7b-chat-hf
+      # - model-id=georgesung/llama2_7b_chat_uncensored
+      # - num_shard=1
+      # - json_output=True
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    working_dir: /app
+
+  chat_ui:
+    build:
+      context: ./chat-ui
+      dockerfile: Dockerfile
+    command: >
+      sh -c "npm run dev -- --host"
+    volumes:
+      - ./chat-ui/.env.local:/app/chat-ui/.env.local
+    ports:
+      - "5173:5173"
+    depends_on:
+      - mongo_chatui
+      - huggingface_inference
+
+  mongo_chatui:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  # debug:
+  #   image: ubuntu:latest
+  #   entrypoint: /bin/sh
+  #   stdin_open: true # docker run -i
+  #   tty: true        # docker run -t
+  #   volumes:
+  #     - ./models/:/data
