@@ -33,7 +33,7 @@ docker compose up
 
 ## Tested Environment
 - NVIDIA RTX 3090, Driver 535.86.05, CUDA version 12.2
-- 2 x NVIDIA RTX 3080 Ti, Driver 525.125.06  , CUDA version 12.0
+- 2 x NVIDIA RTX 3090 Ti, Driver 525.125.06  , CUDA version 12.0
 
 ## Models
 - daryl149/llama-2-7b-chat-hf (unofficial, default)
