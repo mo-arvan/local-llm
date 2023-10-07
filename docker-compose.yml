@@ -2,16 +2,18 @@ version: "3"
 
 services:
   huggingface_inference:
-    image: ghcr.io/huggingface/text-generation-inference:0.9
+    image: ghcr.io/huggingface/text-generation-inference:1.1.0
     volumes:
       - ./models/:/data
     ports:
       - "3000:80"
     shm_size: '1gb'
-    command: --model-id daryl149/llama-2-7b-chat-hf
+    command: --model-id meta-llama/Llama-2-7b-chat-hf
+#    --json-output
     environment:
       # - num_shard=1
-      - json_output=True
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+      - DISABLE_CUSTOM_KERNELS=${DISABLE_CUSTOM_KERNELS}
     deploy:
       resources:
         reservations:
@@ -20,6 +22,11 @@ services:
               count: all
               capabilities: [gpu]
     working_dir: /app
+
+  mongo_chatui:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
 
   chat_ui:
     build:
@@ -35,10 +42,8 @@ services:
       - mongo_chatui
       - huggingface_inference
 
-  mongo_chatui:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
+#  llamacpp:
+#    image: ghcr.io/ggerganov/llama.cpp:full-cuda
   # debug:
   #   image: ubuntu:latest
   #   entrypoint: /bin/sh
@@ -46,3 +51,8 @@ services:
   #   tty: true        # docker run -t
   #   volumes:
   #     - ./models/:/data
+
+
+# daryl149/llama-2-7b-chat-hf
+# georgesung/llama2_7b_chat_uncensored
+# meta-llama/Llama-2-7b-chat-hf
