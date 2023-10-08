@@ -1,1 +1,4 @@
 models
+
+# may contain private keys, passwords, etc.
+.env

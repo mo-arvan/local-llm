@@ -14,6 +14,7 @@ services:
       # - num_shard=1
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
       - DISABLE_CUSTOM_KERNELS=${DISABLE_CUSTOM_KERNELS}
+      - HF_HUB_ENABLE_HF_TRANSFER={HF_HUB_ENABLE_HF_TRANSFER}
     deploy:
       resources:
         reservations:
