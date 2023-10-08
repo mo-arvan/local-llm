@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:80"
     shm_size: '1gb'
-    command: --model-id meta-llama/Llama-2-7b-chat-hf --sharded true
+    command: --model-id meta-llama/Llama-2-7b-chat-hf --sharded true --num-shards 2
 #    --json-output
     environment:
       # - num_shard=1
@@ -53,7 +53,19 @@ services:
   #   volumes:
   #     - ./models/:/data
 
+# 70b
+# meta-llama/Llama-2-70b-chat-hf
+
+# 70b q
+# TheBloke/Llama-2-70B-chat-AWQ
+
+# 7b
+# meta-llama/Llama-2-7b-chat-hf
+# mistralai/Mistral-7B-Instruct-v0.1
+
+# 7b q
+# TheBloke/Mistral-7B-Instruct-v0.1-AWQ
+# TheBloke/Llama-2-7b-Chat-AWQ
 
 # daryl149/llama-2-7b-chat-hf
 # georgesung/llama2_7b_chat_uncensored
-# meta-llama/Llama-2-7b-chat-hf
