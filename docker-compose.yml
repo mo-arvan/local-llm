@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:80"
     shm_size: '1gb'
-    command: --model-id meta-llama/Llama-2-7b-chat-hf --sharded
+    command: --model-id meta-llama/Llama-2-7b-chat-hf --sharded true
 #    --json-output
     environment:
       # - num_shard=1
